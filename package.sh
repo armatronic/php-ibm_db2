@@ -45,10 +45,9 @@ else
 	exit 1;
 fi
 
-
 echo "Downloading ibm_odbc_cli";
 cd $initialdir;
-mkdir -vp /opt/ibm/sqllib;
+mkdir -vp /opt/ibm;
 wget https://repo.schoolbox.com.au/ibm_data_server_driver_for_odbc_cli_linuxx64_v11.1.tar.gz;
 if [ $? -ne 0 ];
 then
@@ -65,7 +64,6 @@ else
 fi
 mv -v /opt/clidriver /opt/ibm/sqllib;
 
-
 echo "Exporting environment variables";
 export IBM_DB_HOME=/opt/ibm/sqllib;
 export IBM_DB_DIR=/opt/ibm/sqllib;
@@ -73,7 +71,6 @@ export IBM_DB_LIB=/opt/ibm/sqllib/lib;
 echo "IBM_DB_HOME: $IBM_DB_HOME";
 echo "IBM_DB_DIR: $IBM_DB_DIR";
 echo "IBM_DB_LIB: $IBM_DB_LIB";
-
 
 echo "Compiling driver from source";
 cd /opt/ibm_db2-$ibmdb2ver;
