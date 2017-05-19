@@ -1,4 +1,4 @@
-phpX.Y-ibmdb2 (IBM_DB2-1+repo.schoolbox.com.au~DISTROCODENAME+1) stable; urgency=low
+phpX.Y-ibmdb2 (IBM_DB2VER-1+repo.schoolbox.com.au~DISTROCODENAME+1) stable; urgency=low
 
   * php-ibmdb2 for PHPX.Y
 
