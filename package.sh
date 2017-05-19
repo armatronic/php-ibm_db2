@@ -110,7 +110,7 @@ ibmdb2ver="$cleanver";
 
 mkdir php$phpver-ibmdb2-$ibmdb2ver;
 
-cp -v $phpibmdb2dir/ibm_db2/modules/*.so  php$phpver-ibmdb2-$ibmdb2ver/;
+cp -v /usr/lib/php/$zendapi/ibm_db2.so  php$phpver-ibmdb2-$ibmdb2ver/;
 cp -v $initialdir/php-ibm_db2-package/extra/* php$phpver-ibmdb2-$ibmdb2ver/;
 cp -vR /opt/ibm/sqllib php$phpver-ibmdb2-$ibmdb2ver/;
 tar czvf php$phpver-ibmdb2_$ibmdb2ver.orig.tar.gz php$phpver-ibmdb2-$ibmdb2ver;
