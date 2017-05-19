@@ -1,0 +1,3 @@
+ibm_db2.so /usr/lib/php/YYYYMMDD
+ibm_db2.ini /etc/php/X.Y/mods-available
+sqllib/* /opt/ibm/sqllib

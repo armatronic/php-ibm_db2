@@ -1,0 +1,12 @@
+Source: phpX.Y-ibmdb2
+Section: non-free/web
+Priority: optional
+Maintainer: Alaress Support <support@schoolbox.com.au>
+Build-Depends: debhelper (>= 8.0.0), nodejs (>= 0.10.26)
+Standards-Version: 3.9.3
+Homepage: http://www.schoolbox.com.au
+
+Package: phpX.Y-ibmdb2
+Architecture: all
+Depends: ${misc:Depends}
+Description: IBM_DB2 modules for phpX.Y

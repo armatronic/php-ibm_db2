@@ -1,0 +1,5 @@
+phpX.Y-ibmdb2 (IBM_DB2-1+repo.schoolbox.com.au~DISTROCODENAME+1) stable; urgency=low
+
+  * php-ibmdb2 for PHPX.Y
+
+ -- vagrant <vagrant@ubuntubuild-schoolbox>  Fri, 28 Mar 2014 14:58:46 +1100
