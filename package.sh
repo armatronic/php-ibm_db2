@@ -9,24 +9,29 @@ echo "Creating artifact directory";
 mkdir -vp $initialdir/package-artifacts;
 
 distrocodename=`cat /etc/lsb-release | grep DISTRIB_CODENAME | cut -d'=' -f2`;
-if [ "$distrocodename" == "trusty" ];
-then
-	echo "Running on Ubuntu 14.04 Trusty";
-	echo "Installing newer build toolchain";
-	apt-get update;
-	apt-get -y install software-properties-common python-software-properties;
-	add-apt-repository ppa:ubuntu-toolchain-r/test -y;
-	apt-get update;
-	export CPPFLAGS="-DSIZEOF_LONG_INT=8";
-	apt-get -y install gcc-5 g++-5 libgss3;
-	if [ $? -ne 0 ];
-	then
-		echo "unable to installed updated toolchain";
-		exit 1;
-	fi
-	update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 60 --slave /usr/bin/g++ g++ /usr/bin/g++-5;
-fi
 
+# None of this could be required anymore: trusty is no longer supported
+#if [ "$distrocodename" == "trusty" ];
+#then
+#	echo "Running on Ubuntu 14.04 Trusty";
+#	echo "Installing newer build toolchain";
+#	apt-get update;
+#	apt-get -y install software-properties-common python-software-properties;
+#	add-apt-repository ppa:ubuntu-toolchain-r/test -y;
+#	apt-get update;
+#	export CPPFLAGS="-DSIZEOF_LONG_INT=8";
+#	apt-get -y install gcc-5 g++-5 libgss3;
+#	if [ $? -ne 0 ];
+#	then
+#		echo "unable to installed updated toolchain";
+#		exit 1;
+#	fi
+#	update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 60 --slave /usr/bin/g++ g++ /usr/bin/g++-5;
+#fi
+
+# TODO upload newer DB2 ODBC CLI drivers to repo.schoolbox.com.au
+# The drivers are currently publicly available at:
+# https://public.dhe.ibm.com/ibmdl/export/pub/software/data/db2/drivers/odbc_cli/
 ibmdb2ver='1.9.9';
 
 echo "Downloading ibm_db2 for php";
