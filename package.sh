@@ -31,16 +31,16 @@ fi
 # What package versions are we using?
 # For 7.1 use the old versions: for 7.4 use newer
 phpver=`php -v | head -n1 | awk '{print $2}' | cut -d'.' -f1-2`;
-if [ phpver == '7.1' ]
+if [ $phpver == '7.1' ]; then
   ibmdb2ver='1.9.9';
   db2odbcver='11.1';
-elif [ phpver == '7.4' ]
+elif [ $phpver == '7.4' ]; then
   # TODO upload newer ibm_db2 for PHP drivers to repo.schoolbox.com.au
   # The drivers are currently publicly available at:
   # https://pecl.php.net/package/ibm_db2
   ibmdb2ver='2.0.8';
 
-  # TODO upload newer DB2 ODBC CLI drivers to `repo.schoolbox.com.au
+  # TODO upload newer DB2 ODBC CLI drivers to repo.schoolbox.com.au
   # The drivers are currently publicly available at:
   # https://public.dhe.ibm.com/ibmdl/export/pub/software/data/db2/drivers/odbc_cli/
   # (I think the most recent version is 11.5.4, as that is the most recent version
