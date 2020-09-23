@@ -28,10 +28,10 @@ then
 	update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 60 --slave /usr/bin/g++ g++ /usr/bin/g++-5;
 fi
 
-# TODO upload newer DB2 ODBC CLI drivers to repo.schoolbox.com.au
+# TODO upload newer ibm_db2 for PHP drivers to repo.schoolbox.com.au
 # The drivers are currently publicly available at:
-# https://public.dhe.ibm.com/ibmdl/export/pub/software/data/db2/drivers/odbc_cli/
-ibmdb2ver='1.9.9';
+# https://pecl.php.net/package/ibm_db2
+ibmdb2ver='2.0.8';
 
 echo "Downloading ibm_db2 for php";
 cd $initialdir;
@@ -49,20 +49,32 @@ else
 	exit 1;
 fi
 
+# TODO consider using this script to build PDO_IBM package
+# (not installable via `pecl install pdo_ibm`: may be compiled from source,
+#  downloadable from https://pecl.php.net/package/PDO_IBM)
+
+# TODO upload newer DB2 ODBC CLI drivers to repo.schoolbox.com.au
+# The drivers are currently publicly available at:
+# https://public.dhe.ibm.com/ibmdl/export/pub/software/data/db2/drivers/odbc_cli/
+# (I think the most recent version is 11.5.4, as that is the most recent version
+#  available in the IBM Data Server Driver Package, as found on
+#  https://epwt-www.mybluemix.net/software/support/trial/cst/programwebsite.wss?siteId=853)
+db2odbcver='11.5.4';
+
 echo "Downloading ibm_odbc_cli";
 cd $initialdir;
 mkdir -vp /opt/ibm;
-wget https://repo.schoolbox.com.au/ibm_data_server_driver_for_odbc_cli_linuxx64_v11.1.tar.gz;
+wget https://repo.schoolbox.com.au/ibm_data_server_driver_for_odbc_cli_linuxx64_v$db2odbcver.tar.gz;
 if [ $? -ne 0 ];
 then
-	echo "Tarball download failed: ibm_data_server_driver_for_odbc_cli_linuxx64_v11.1.tar.gz";
+	echo "Tarball download failed: ibm_data_server_driver_for_odbc_cli_linuxx64_v$db2odbcver.tar.gz";
 	exit 1;
 fi
-if [ -f ibm_data_server_driver_for_odbc_cli_linuxx64_v11.1.tar.gz ];
+if [ -f ibm_data_server_driver_for_odbc_cli_linuxx64_v$db2odbcver.tar.gz ];
 then
-	tar xzvf ibm_data_server_driver_for_odbc_cli_linuxx64_v11.1.tar.gz -C /opt;
+	tar xzvf ibm_data_server_driver_for_odbc_cli_linuxx64_v$db2odbcver.tar.gz -C /opt;
 else
-	echo "Missing ibm_data_server_driver_for_odbc_cli_linuxx64_v11.1.tar.gz"
+	echo "Missing ibm_data_server_driver_for_odbc_cli_linuxx64_v$db2odbcver.tar.gz"
 	ls -lR;
 	exit 1;
 fi
