@@ -28,10 +28,35 @@ then
 	update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 60 --slave /usr/bin/g++ g++ /usr/bin/g++-5;
 fi
 
-# TODO upload newer ibm_db2 for PHP drivers to repo.schoolbox.com.au
-# The drivers are currently publicly available at:
-# https://pecl.php.net/package/ibm_db2
-ibmdb2ver='2.0.8';
+# What package versions are we using?
+# For 7.1 use the old versions: for 7.4 use newer
+phpver=`php -v | head -n1 | awk '{print $2}' | cut -d'.' -f1-2`;
+if [ phpver == '7.1' ]
+  ibmdb2ver='1.9.9';
+  db2odbcver='11.1';
+elif [ phpver == '7.4' ]
+  # TODO upload newer ibm_db2 for PHP drivers to repo.schoolbox.com.au
+  # The drivers are currently publicly available at:
+  # https://pecl.php.net/package/ibm_db2
+  ibmdb2ver='2.0.8';
+
+  # TODO upload newer DB2 ODBC CLI drivers to `repo.schoolbox.com.au
+  # The drivers are currently publicly available at:
+  # https://public.dhe.ibm.com/ibmdl/export/pub/software/data/db2/drivers/odbc_cli/
+  # (I think the most recent version is 11.5.4, as that is the most recent version
+  #  available in the IBM Data Server Driver Package, as found on
+  #  https://epwt-www.mybluemix.net/software/support/trial/cst/programwebsite.wss?siteId=853)
+  db2odbcver='11.5.4';
+
+  # TODO consider using this script to build PDO_IBM package
+  # (not installable via `pecl install pdo_ibm`: may be compiled from source,
+  #  downloadable from https://pecl.php.net/package/PDO_IBM)
+  pdoibmver='1.3.6';
+else
+  echo "Build and package script only supports PHP 7.1 and 7.4";
+  exit 1;
+fi
+
 
 echo "Downloading ibm_db2 for php";
 cd $initialdir;
@@ -48,18 +73,6 @@ else
 	echo "Missing ibm_db2-$ibmdb2ver.tgz"
 	exit 1;
 fi
-
-# TODO consider using this script to build PDO_IBM package
-# (not installable via `pecl install pdo_ibm`: may be compiled from source,
-#  downloadable from https://pecl.php.net/package/PDO_IBM)
-
-# TODO upload newer DB2 ODBC CLI drivers to repo.schoolbox.com.au
-# The drivers are currently publicly available at:
-# https://public.dhe.ibm.com/ibmdl/export/pub/software/data/db2/drivers/odbc_cli/
-# (I think the most recent version is 11.5.4, as that is the most recent version
-#  available in the IBM Data Server Driver Package, as found on
-#  https://epwt-www.mybluemix.net/software/support/trial/cst/programwebsite.wss?siteId=853)
-db2odbcver='11.5.4';
 
 echo "Downloading ibm_odbc_cli";
 cd $initialdir;
@@ -91,7 +104,6 @@ echo "IBM_DB_LIB: $IBM_DB_LIB";
 echo "Compiling driver from source";
 cd /opt/ibm_db2-$ibmdb2ver;
 
-phpver=`php -v | head -n1 | awk '{print $2}' | cut -d'.' -f1-2`;
 echo "For php version: $phpver";
 
 echo "phpize";
