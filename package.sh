@@ -41,11 +41,11 @@ elif [ $phpver == '7.4' ]; then
   ibmdb2ver='2.0.8';
 
   # TODO upload newer DB2 ODBC CLI drivers to repo.schoolbox.com.au
-  # The drivers are currently publicly available at:
-  # https://public.dhe.ibm.com/ibmdl/export/pub/software/data/db2/drivers/odbc_cli/
   # (I think the most recent version is 11.5.4, as that is the most recent version
   #  available in the IBM Data Server Driver Package, as found on
   #  https://epwt-www.mybluemix.net/software/support/trial/cst/programwebsite.wss?siteId=853)
+  # (There is an older driver 11.1.4.4 currently publicly available at:
+  #  https://public.dhe.ibm.com/ibmdl/export/pub/software/data/db2/drivers/odbc_cli/)
   db2odbcver='11.5.4';
 
   # TODO consider using this script to build PDO_IBM package
