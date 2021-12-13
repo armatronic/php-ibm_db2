@@ -31,7 +31,7 @@ fi
 # What package versions are we using?
 # For 7.1 use the old versions: for 7.4 use newer
 phpver=`php -v | head -n1 | awk '{print $2}' | cut -d'.' -f1-2`;
-if [ $phpver == '7.4' | $phpver == '8.0' ]; then
+if [ $phpver == '7.4' ] || [ $phpver == '8.0' ]; then
   # TODO upload newer ibm_db2 for PHP drivers to repo.schoolbox.com.au
   # The drivers are currently publicly available at:
   # https://pecl.php.net/package/ibm_db2
