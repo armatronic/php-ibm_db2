@@ -136,11 +136,11 @@ ibmdb2ver="$cleanver";
 mkdir php$phpver-ibmdb2-$ibmdb2ver;
 
 cp -v /usr/lib/php/$zendapi/ibm_db2.so  php$phpver-ibmdb2-$ibmdb2ver/;
-cp -v $initialdir/php-ibm_db2-package/extra/* php$phpver-ibmdb2-$ibmdb2ver/;
+cp -v $initialdir/php-ibm-db2-package/extra/* php$phpver-ibmdb2-$ibmdb2ver/;
 cp -vR /opt/ibm/sqllib php$phpver-ibmdb2-$ibmdb2ver/;
-tar czvf php$phpver-ibmdb2_$ibmdb2ver.orig.tar.gz php$phpver-ibmdb2-$ibmdb2ver;
+tar czvf php$phpver-ibmdb2-$ibmdb2ver.orig.tar.gz php$phpver-ibmdb2-$ibmdb2ver;
 
-cp -vfR $initialdir/php-ibm_db2-package/debian php$phpver-ibmdb2-$ibmdb2ver/;
+cp -vfR $initialdir/php-ibm-db2-package/debian php$phpver-ibmdb2-$ibmdb2ver/;
 
 cd php$phpver-ibmdb2-$ibmdb2ver;
 
@@ -166,11 +166,11 @@ ls -lhR $initialdir/package-artifacts/;
 
 echo "Creating package tarball";
 cd $initialdir;
-tar czvf php$phpver-ibm_db2-package.tar.gz package-artifacts;
+tar czvf php$phpver-ibm-db2-package.tar.gz package-artifacts;
 if [ $? -ne 0 ];
 then
         echo "Unable to tarball packages";
         exit 1;
 fi
 
-cp -v php$phpver-ibm_db2-package.tar.gz $initialdir/package-artifacts/;
+cp -v php$phpver-ibm-db2-package.tar.gz $initialdir/package-artifacts/;
