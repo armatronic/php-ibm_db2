@@ -31,14 +31,11 @@ fi
 # What package versions are we using?
 # For 7.1 use the old versions: for 7.4 use newer
 phpver=`php -v | head -n1 | awk '{print $2}' | cut -d'.' -f1-2`;
-if [ $phpver == '7.1' ]; then
-  ibmdb2ver='1.9.9';
-  db2odbcver='11.1';
-elif [ $phpver == '7.4' ]; then
+if [ $phpver == '7.4' | $phpver == '8.0' ]; then
   # TODO upload newer ibm_db2 for PHP drivers to repo.schoolbox.com.au
   # The drivers are currently publicly available at:
   # https://pecl.php.net/package/ibm_db2
-  ibmdb2ver='2.0.8';
+  ibmdb2ver='2.1.5';
 
   # TODO upload newer DB2 ODBC CLI drivers to repo.schoolbox.com.au
   # (I think the most recent version is 11.5.4, as that is the most recent version
@@ -51,9 +48,9 @@ elif [ $phpver == '7.4' ]; then
   # TODO consider using this script to build PDO_IBM package
   # (not installable via `pecl install pdo_ibm`: may be compiled from source,
   #  downloadable from https://pecl.php.net/package/PDO_IBM)
-  pdoibmver='1.3.6';
+  pdoibmver='1.4.2';
 else
-  echo "Build and package script only supports PHP 7.1 and 7.4";
+  echo "Build and package script only supports PHP 7.4 and 8.0";
   exit 1;
 fi
 
