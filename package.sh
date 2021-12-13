@@ -57,7 +57,7 @@ fi
 
 echo "Downloading ibm_db2 for php";
 cd $initialdir;
-wget https://repo.schoolbox.com.au/ibm_db2-$ibmdb2ver.tgz;
+wget https://pecl.php.net/get/ibm_db2-$ibmdb2ver.tgz;
 if [ $? -ne 0 ];
 then
 	echo "Tarball download failed: ibm_db2-$ibmdb2ver.tgz";
